@@ -1,5 +1,7 @@
-function () {
-    document.getElementById("par").innerHTML = "";
+let game = {
+    score: 0,
+    currentGame: [],
 }
 
-module.exports =
+
+module.exports ={ game }
