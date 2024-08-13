@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const { game } = require("../game");
+const { game, newGame } = require("../game");
 
 beforeEach(() => {
     let fs = require("fs");
@@ -24,6 +24,20 @@ beforeEach(() => {
         test("choices key exists", () => {
             expect("choices" in game).toBe(true);
         });
+        test("choices contains the ids", () => {
+            expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
+        });
     });
     
-    
+    describe("newGame works correctly", () => {
+        beforeAll(() => {
+            game.score = 42;
+            game.playerMoves = ["button1", "button2"];
+            game.currentGame = ["button1", "button2"];
+            document.getElementById("score").innerText = "42"
+            newGame();
+        });
+        test("should set game score to zero", () => {
+            expect(game.score).toEqual(0);
+        });
+    });
